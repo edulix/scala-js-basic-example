@@ -12,9 +12,11 @@ lazy val hello = crossProject(JSPlatform)
     // For now, this is an application with a main method
     scalaJSUseMainModuleInitializer := true,
     jsDependencies += RuntimeDOM,
+    jsEnv := new org.scalajs.jsenv.jsdomnodejs.JSDOMNodeJSEnv(),
     libraryDependencies += "org.scala-js" %%% "scalajs-dom" % "0.9.1",
     npmDependencies in Compile += "source-map-support" -> "0.4.15",
-    npmDependencies in Compile += "jsdom" -> "11.1.0"
+    npmDependencies in Compile += "jsdom" -> "11.1.0",
+    webpackConfigFile := Some(baseDirectory.value / "webpack.config.js")
   )
 
 lazy val helloJS = hello.enablePlugins(ScalaJSBundlerPlugin).js
