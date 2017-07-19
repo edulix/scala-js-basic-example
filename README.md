@@ -41,6 +41,13 @@ Install the `phantomjs` command in your system, then run:
 
 ### With Scala.js and Selenium with Google Chrome
 
-Install `selenium` and downlod selenium-chromedriver, then run:
+TODO: Make it headless
+
+Install `selenium`, `xvfb` and downlod selenium-chromedriver, then run the
+following commands, but changing /path/to/chromedriver to the correct path:
+
+    # These two prevent selenium opening chrome windows in your face
+    nohup Xvfb :1 &
+    export DISPLAY=:1
 
     sbt -Dwebdriver.chrome.driver=/path/to/chromedriver -DtestBackend=selenium-chrome helloJS/test
