@@ -41,8 +41,6 @@ Install the `phantomjs` command in your system, then run:
 
 ### With Scala.js and Selenium with Google Chrome
 
-TODO: Make it headless
-
 Install `selenium`, `xvfb` and downlod selenium-chromedriver, then run the
 following commands, but changing /path/to/chromedriver to the correct path:
 
