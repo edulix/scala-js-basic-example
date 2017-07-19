@@ -6,7 +6,9 @@ a skeleton for projects. But it includes additionally:
 - Example shared code between platforms and some platform-specific code
 - Unit testing with a wide range of backends [IN-PROGRESS, missing firefox & cross-platform]
 - Integration with Travis CI to execute the unit tests [TODO]
+- Integration with coverage for tests [TODO]
 - A pre-commit hook that makes unit test obligatory to pass locally [TODO]
+- a pre-commit hook that checks that code styling conforms to the specification [TODO]
 - Symbol exports in Scala.js [TODO]
 
 ## How to run in the web browser
