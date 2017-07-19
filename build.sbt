@@ -11,44 +11,23 @@ lazy val hello = crossProject(JSPlatform)
     // For now, this is an application with a main method
     scalaJSUseMainModuleInitializer := true,
     jsDependencies += RuntimeDOM,
-    jsEnv := {
-        val testBackend = sys.props.getOrElse("testBackend", "phantomjs")
-        sLog.value.info(s"jsSettings: testBackend = $testBackend")
+    jsEnv in Test := {
+        val testBackend = sys.props.getOrElse("testBackend", "jsdom")
         testBackend match {
-        case "jsdom" => {
-          new org.scalajs.jsenv.jsdomnodejs.JSDOMNodeJSEnv(
-          org.scalajs.jsenv.jsdomnodejs.JSDOMNodeJSEnv.Config()
-            .withArgs(
-              List(
-                (
-                  baseDirectory.value / "target" / "scala-2.11" /
-                  "scalajs-bundler" / "main" / "scala-js-tutorial-fastopt-bundle.js"
-                ).getAbsolutePath
-              )
-            )
-          )
-        }
-        /* includes phantomjs, the default */
-        case "phantomjs" =>  Def.settingDyn {
-          PhantomJSEnv(
-            "phantomjs",
-            Seq(
-              (
-                baseDirectory.value / "target" / "scala-2.11" / "scalajs-bundler" /
-                "main" / "scala-js-tutorial-fastopt-bundle.js"
-              ).getAbsolutePath
-            )
-          )
-        }.value
+        case "jsdom" => new JSDOMNodeJSBundlerEnv()
+        case "phantomjs" =>  new PhantomJSBundlerEnv(scalaJSPhantomJSClassLoader.value)
+        case "selenium-chrome" => new SeleniumJSBundlerEnv(org.scalajs.jsenv.selenium.Chrome())
+        case "selenium-firefox" => new SeleniumJSBundlerEnv(org.scalajs.jsenv.selenium.Firefox())
         case x => sys.error(
-          s"invalid environment variable 'testBackend' value (='$x'). Allowed values are: jsdom|phantomjs"
+          s"invalid environment variable 'testBackend' value (='$x'). Allowed values are: jsdom|phantomjs|selenium-chrome|selenium-firefox"
         )
       }
     },
     libraryDependencies += "org.scala-js" %%% "scalajs-dom" % "0.9.1",
     npmDependencies in Compile += "source-map-support" -> "0.4.15",
-    npmDependencies in Compile += "jsdom" -> "11.1.0",
-    webpackConfigFile := Some(baseDirectory.value / "webpack.config.js")
+    npmDependencies in Compile += "jsdom" -> "11.1.0"/*,
+    webpackConfigFile := Some(baseDirectory.value / "webpack.config.js"),
+    webpackConfigFile in Test := Some(baseDirectory.value / "webpack.config.js")*/
   )
 
 lazy val helloJS = hello.enablePlugins(ScalaJSBundlerPlugin).js
