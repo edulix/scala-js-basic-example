@@ -34,15 +34,21 @@ lazy val hello = crossProject(JSPlatform)
     },
     skip in packageJSDependencies := false,
 
-    jsDependencies += RuntimeDOM,
-    jsDependencies += "org.webjars" % "jquery" % "2.1.4" / "2.1.4/jquery.js",
+    jsDependencies ++= Seq(
+      RuntimeDOM,
+      "org.webjars" % "jquery" % "2.1.4" / "2.1.4/jquery.js"
+    ),
 
-    libraryDependencies += "org.scala-js" %%% "scalajs-dom" % "0.9.1",
-    libraryDependencies += "be.doeraene" %%% "scalajs-jquery" % "0.9.1",
-    libraryDependencies += "com.lihaoyi" %%% "utest" % "0.4.4" % "test",
+    libraryDependencies ++= Seq(
+      "org.scala-js" %%% "scalajs-dom" % "0.9.1",
+      "be.doeraene" %%% "scalajs-jquery" % "0.9.1",
+      "com.lihaoyi" %%% "utest" % "0.4.4" % "test"
+    ),
 
-    npmDependencies in Compile += "source-map-support" -> "0.4.15",
-    npmDependencies in Compile += "jsdom" -> "11.1.0",
+    npmDependencies in Compile ++= Seq(
+      "source-map-support" -> "0.4.15",
+      "jsdom" -> "11.1.0"
+    ),
 
     testFrameworks += new TestFramework("utest.runner.Framework")
     /*,
