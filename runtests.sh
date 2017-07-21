@@ -11,4 +11,5 @@ fi
 
 sbt -DtestBackend=jsdom "; clean; helloJS/fastOptJS; helloJS/fastOptJS::webpack; helloJS/test" && \
 sbt -DtestBackend=phantomjs helloJS/test && \
-sbt -Dwebdriver.chrome.driver=$1 -DtestBackend=selenium-chrome helloJS/test
+sbt -Dwebdriver.chrome.driver=$1 -DtestBackend=selenium-chrome helloJS/test && \
+sbt helloJVM/test

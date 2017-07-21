@@ -1,12 +1,17 @@
 // shadow sbt-scalajs' crossProject and CrossType until Scala.js 1.0.0 is released
 import sbtcrossproject.{crossProject, CrossType}
 
-lazy val hello = crossProject(JSPlatform)
+lazy val hello = crossProject(JSPlatform, JVMPlatform, NativePlatform)
   .crossType(CrossType.Full)
   .settings(
     scalaVersion := "2.11.11",
-    name := "Scala.js Tutorial"
+    name := "Scala.js Tutorial",
+    libraryDependencies ++= Seq(
+      "com.lihaoyi" %%% "utest" % "0.4.4" % "test"
+    )
   )
+  .jvmSettings()
+  .nativeSettings()
   .jsSettings(
     // For now, this is an application with a main method
     scalaJSUseMainModuleInitializer := true,
@@ -41,8 +46,7 @@ lazy val hello = crossProject(JSPlatform)
 
     libraryDependencies ++= Seq(
       "org.scala-js" %%% "scalajs-dom" % "0.9.1",
-      "be.doeraene" %%% "scalajs-jquery" % "0.9.1",
-      "com.lihaoyi" %%% "utest" % "0.4.4" % "test"
+      "be.doeraene" %%% "scalajs-jquery" % "0.9.1"
     ),
 
     npmDependencies in Compile ++= Seq(
@@ -56,4 +60,6 @@ lazy val hello = crossProject(JSPlatform)
     webpackConfigFile in Test := Some(baseDirectory.value / "webpack.config.js")*/
   )
 
-lazy val helloJS = hello.enablePlugins(ScalaJSBundlerPlugin).js
+lazy val helloJS      = hello.enablePlugins(ScalaJSBundlerPlugin).js
+lazy val helloJVM    = hello.jvm
+lazy val helloNative = hello.native

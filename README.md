@@ -2,9 +2,9 @@
 
 This is based on the scala.js basic tutorial modified to be a skeleton to be used as
 a skeleton for projects. But it includes additionally:
-- Cross-compiling for three platforms: ScalaNative, Scala.js and ScalaJVM [TODO]
+- Cross-compiling for three platforms: ScalaNative, Scala.js and ScalaJVM
 - Example shared code between platforms and some platform-specific code
-- Unit testing with a wide range of backends [IN-PROGRESS, missing firefox & cross-platform]
+- Unit testing with a wide range of backends [IN-PROGRESS, firefox doesn't work]
 - Integration with Travis CI to execute the unit tests [TODO]
 - Integration with coverage for tests [TODO]. codecoverage like https://codecov.io/gh/pepegar/hammock ? coverage.io?
 - A pre-commit hook that makes unit test obligatory to pass locally [TODO]
@@ -51,7 +51,6 @@ following commands, but changing /path/to/chromedriver to the correct path:
     export DISPLAY=:1
 
     sbt -Dwebdriver.chrome.driver=/path/to/chromedriver -DtestBackend=selenium-chrome helloJS/test
-
 
 ## Execute tests in all environments
 
