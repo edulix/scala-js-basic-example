@@ -51,7 +51,8 @@ lazy val hello = crossProject(JSPlatform, JVMPlatform, NativePlatform)
 
     npmDependencies in Compile ++= Seq(
       "source-map-support" -> "0.4.15",
-      "jsdom" -> "11.1.0"
+      "jsdom" -> "11.1.0",
+      "webpack" -> "2.7.0"
     ),
 
     testFrameworks += new TestFramework("utest.runner.Framework")
