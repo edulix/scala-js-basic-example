@@ -1,0 +1,45 @@
+language: scala
+
+scala:
+  - 2.11.11
+
+sudo: false
+
+jdk:
+  - oraclejdk8
+
+script:
+  - sbt ++$TRAVIS_SCALA_VERSION server/test client/test
+
+# <Comment>
+# Tricks to avoid unnecessary cache updates, from
+# http://www.scala-sbt.org/0.13/docs/Travis-CI-with-sbt.html
+cache:
+  directories:
+    - $HOME/.ivy2/cache
+    - $HOME/.sbt/boot/
+
+before_cache:
+  # Cleanup the cached directories to avoid unnecessary cache updates
+  - find $HOME/.ivy2/cache -name "ivydata-*.properties" -print -delete
+  - find $HOME/.sbt        -name "*.lock"               -print -delete
+# </Comment>
+
+install:
+  - . $HOME/.nvm/nvm.sh
+  - nvm install stable
+  - nvm use stable
+  - npm install
+
+notifications:
+  on_success: change
+  email:
+    recipients:
+      # generated using:
+      #
+      # gem install travis
+      # travis encrypt email@example.com -r nVotesOrg/scala-js-basic-example
+      #
+      # Read more in: https://docs.travis-ci.com/user/encryption-keys/
+      secure:
+        - "sudlB7XaEq3mMQ/jSJPtssQaTL9i6zrHpF4Xa0TKHX69nkSg7/Aq/Z37Qe4o1ABmTImHc/b5ipdGAxC5OCVuRazDdh7P7e24QFPETEsWdmVRVS3/6DGAYIbugA937Zw47LarK3v6OQJfGYcj1scRfRqDwrO4ngoIMawwFSo209COaniCPnGi7gAm/BNwZkS0PwdxQPSTNrZAgR5VKawoZHJZDosQE6CnpjFBnfa/JZDYfj/AIk0U7ygpRWiO5Rcndudc/jr69bz/6EpUcwwAQHg6RnzX2fCoCgyOVlzTPHNb3MUWV8CBe5EK20PSxijzRouY0zH0Mx9TQq9GIJrD75IJ8vYtdIutrfz9EX9sMS5grfnielxZleeQ6mXD6CrseVmL9RJFPXmZZay1uJ0fhg+w2Rc1wK7FaDgGLueKBSWUQmx79K93OsPhC/FqCUCsk6ua6lqtv2v6uBx54KJnU7pTTkgb+/lrMMOrDkR7qbvRt/613TqxehgK/zA+j4VKw+7XrViYUJ65iM0n6ljSbDbw5BZh9cssRY7vyXW4gTx4m9NiebXiTy8UZ2EJq9X/U+5T9KvcOpTBdKBxYrDHftZoSPb5itty3g4TwdCUA8dh7WunK4KBYdlWx6iLvY/5O0w6V3yDwoYluakp/MG5ioYnwk8kRQ0uYMc1qMriuPE="
