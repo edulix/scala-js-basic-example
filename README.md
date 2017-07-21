@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/travis-ci/travis-web.svg?branch=master)](https://travis-ci.org/travis-ci/travis-web)
+
 # Scalajs basic tutorial
 
 This is based on the scala.js basic tutorial modified to be a skeleton to be used as
@@ -5,7 +7,7 @@ a skeleton for projects. But it includes additionally:
 - Cross-compiling for three platforms: ScalaNative, Scala.js and ScalaJVM
 - Example shared code between platforms and some platform-specific code
 - Unit testing with a wide range of backends [IN-PROGRESS, firefox doesn't work]
-- Integration with Travis CI to execute the unit tests [TODO]
+- Integration with Travis CI to execute the unit tests
 - Integration with coverage for tests [TODO]. codecoverage like https://codecov.io/gh/pepegar/hammock ? coverage.io?
 - A pre-commit hook that makes unit test obligatory to pass locally [TODO]
 - a pre-commit hook that checks that code styling conforms to the specification [TODO]
