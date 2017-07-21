@@ -6,7 +6,7 @@ a skeleton for projects. But it includes additionally:
 - Example shared code between platforms and some platform-specific code
 - Unit testing with a wide range of backends [IN-PROGRESS, missing firefox & cross-platform]
 - Integration with Travis CI to execute the unit tests [TODO]
-- Integration with coverage for tests [TODO]
+- Integration with coverage for tests [TODO]. codecoverage like https://codecov.io/gh/pepegar/hammock ? coverage.io?
 - A pre-commit hook that makes unit test obligatory to pass locally [TODO]
 - a pre-commit hook that checks that code styling conforms to the specification [TODO]
 - Symbol exports in Scala.js [TODO]
@@ -51,3 +51,10 @@ following commands, but changing /path/to/chromedriver to the correct path:
     export DISPLAY=:1
 
     sbt -Dwebdriver.chrome.driver=/path/to/chromedriver -DtestBackend=selenium-chrome helloJS/test
+
+
+## Execute tests in all environments
+
+Install all the dependencies above and then execute:
+
+    ./runtests.sh /path/to/chromedriver
