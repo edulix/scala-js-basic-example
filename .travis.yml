@@ -17,13 +17,11 @@ jdk:
   - openjdk8
 
 script:
-  # Clean compile, start writing the coverage report, then execute the unit
-  # tests with jsdom, phantomjs and google-chrome backends, then create coverage
-  # report
-  - sbt -DtestBackend=jsdom "; clean; coverage; helloJS/fastOptJS; helloJS/fastOptJS::webpack; helloJS/test"
+  # for now sbt coverage doesn't work with scala-js
+  - sbt "; clean; coverage; helloJVM/test; coverageReport"
+  - sbt -DtestBackend=jsdom "; helloJS/fastOptJS; helloJS/fastOptJS::webpack; helloJS/test"
   - sbt -DtestBackend=phantomjs helloJS/test
   - sbt -Dwebdriver.chrome.driver=/tmp/chromedriver -DtestBackend=selenium-chrome helloJS/test
-  - sbt coverageReport
 
 # <Comment>
 # Tricks to avoid unnecessary cache updates, from
