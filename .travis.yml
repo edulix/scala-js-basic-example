@@ -9,7 +9,7 @@ jdk:
   - oraclejdk8
 
 script:
-  - sbt -DtestBackend=jsdom "; clean; helloJS/fastOptJS; helloJS/fastOptJS::webpack"; ls /home/travis/build/nVotesOrg/scala-js-basic-example/hello/js/target/scala-2.11/scalajs-bundler; /home/travis/build/nVotesOrg/scala-js-basic-example/hello/js/target/scala-2.11/scalajs-bundler/main; /home/travis/build/nVotesOrg/scala-js-basic-example/hello/js/target/scala-2.11/scalajs-bundler/main_node_modules
+  - sbt -DtestBackend=jsdom "; clean; helloJS/fastOptJS; helloJS/fastOptJS::webpack"; ls /home/travis/build/nVotesOrg/scala-js-basic-example/hello/js/target/scala-2.11/scalajs-bundler /home/travis/build/nVotesOrg/scala-js-basic-example/hello/js/target/scala-2.11/scalajs-bundler/main /home/travis/build/nVotesOrg/scala-js-basic-example/hello/js/target/scala-2.11/scalajs-bundler/main_node_modules
   #- sbt -DtestBackend=jsdom "; clean; helloJVM/test; helloJS/fastOptJS; helloJS/fastOptJS::webpack; helloJS/test" && sbt -DtestBackend=phantomjs helloJS/testsbt && sbt -Dwebdriver.chrome.driver=$1 -DtestBackend=selenium-chrome helloJS/test
 
 # <Comment>
