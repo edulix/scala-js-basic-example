@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/nVotesOrg/scala-js-basic-example.svg?branch=master)](https://travis-ci.org/nVotesOrg/scala-js-basic-example) [![Gitter](https://img.shields.io/badge/gitter-join%20chat-green.svg)](https://gitter.im/nVotesOrg/scala-js-basic-example)
+[![Build Status](https://travis-ci.org/nVotesOrg/scala-js-basic-example.svg?branch=master)](https://travis-ci.org/nVotesOrg/scala-js-basic-example) [![Gitter](https://img.shields.io/badge/gitter-join%20chat-green.svg)](https://gitter.im/nVotesOrg/scala-js-basic-example) [![Codecov](https://codecov.io/github/nVotesOrg/scala-js-basic-example.svg/coverage.svg?branch=master)](https://codecov.io/github/nVotesOrg/scala-js-basic-example.svg?branch=master)
 
 # Scalajs basic tutorial
 
@@ -6,10 +6,10 @@ This is based on the scala.js basic tutorial modified to be a skeleton to be use
 a skeleton for projects. But it includes additionally:
 - Cross-compiling for three platforms: ScalaNative, Scala.js and ScalaJVM
 - Example shared code between platforms and some platform-specific code
-- Unit testing with a wide range of backends [IN-PROGRESS, firefox doesn't work]
+- Unit testing with a wide range of backends
 - Integration with Travis CI to execute the unit tests
 - Integration with coverage for tests [TODO]. codecoverage like https://codecov.io/gh/pepegar/hammock ? coverage.io?
-- A pre-commit hook that makes unit test obligatory to pass locally [TODO]
+- A pre-commit hook that makes unit test obligatory to pass locally [TODO, use git for this]
 - a pre-commit hook that checks that code styling conforms to the specification [TODO]
 - Symbol exports in Scala.js [TODO]
 

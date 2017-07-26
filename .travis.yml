@@ -7,17 +7,23 @@ addons:
 scala:
   - 2.11.11
 
+# Tricks to avoid unnecessary cache updates, from
+# http://www.scala-sbt.org/0.13/docs/Travis-CI-with-sbt.html
 sudo: false
 
+# Test the two most common implementations of Java 8, Oracle's and OpenJDK
 jdk:
   - oraclejdk8
   - openjdk8
 
 script:
-  - node -v; npm -v
-  - sbt -DtestBackend=jsdom "; clean; helloJS/fastOptJS; helloJS/fastOptJS::webpack; helloJS/test"
+  # Clean compile, start writing the coverage report, then execute the unit
+  # tests with jsdom, phantomjs and google-chrome backends, then create coverage
+  # report
+  - sbt -DtestBackend=jsdom "; clean; coverage; helloJS/fastOptJS; helloJS/fastOptJS::webpack; helloJS/test"
   - sbt -DtestBackend=phantomjs helloJS/test
   - sbt -Dwebdriver.chrome.driver=/tmp/chromedriver -DtestBackend=selenium-chrome helloJS/test
+  - sbt coverageReport
 
 # <Comment>
 # Tricks to avoid unnecessary cache updates, from
@@ -34,20 +40,27 @@ before_cache:
 # </Comment>
 
 before_script:
+  # launch a headlessX server where web browser tests will open its windows
   - "export DISPLAY=:99.0"
   - "sh -e /etc/init.d/xvfb start"
   - sleep 3
 
 before_install:
+  # Install chromedriver, used for executing tests with Google Chrome
   - wget https://chromedriver.storage.googleapis.com/2.31/chromedriver_linux64.zip -O /tmp/chromedriver.zip
   - unzip /tmp/chromedriver.zip -d /tmp
   - chmod 777 /tmp/chromedriver
 
 install:
+  # specify node.js version
   - . $HOME/.nvm/nvm.sh
   - nvm install 6.11.1
   - nvm use 6.11.1
   - npm install
+
+after_success:
+  # Send coverage report to codecov
+  - bash <(curl -s https://codecov.io/bash)
 
 notifications:
   on_success: change
@@ -59,5 +72,9 @@ notifications:
       # travis encrypt email@example.com -r nVotesOrg/scala-js-basic-example
       #
       # Read more in: https://docs.travis-ci.com/user/encryption-keys/
-      secure:
-        - "sudlB7XaEq3mMQ/jSJPtssQaTL9i6zrHpF4Xa0TKHX69nkSg7/Aq/Z37Qe4o1ABmTImHc/b5ipdGAxC5OCVuRazDdh7P7e24QFPETEsWdmVRVS3/6DGAYIbugA937Zw47LarK3v6OQJfGYcj1scRfRqDwrO4ngoIMawwFSo209COaniCPnGi7gAm/BNwZkS0PwdxQPSTNrZAgR5VKawoZHJZDosQE6CnpjFBnfa/JZDYfj/AIk0U7ygpRWiO5Rcndudc/jr69bz/6EpUcwwAQHg6RnzX2fCoCgyOVlzTPHNb3MUWV8CBe5EK20PSxijzRouY0zH0Mx9TQq9GIJrD75IJ8vYtdIutrfz9EX9sMS5grfnielxZleeQ6mXD6CrseVmL9RJFPXmZZay1uJ0fhg+w2Rc1wK7FaDgGLueKBSWUQmx79K93OsPhC/FqCUCsk6ua6lqtv2v6uBx54KJnU7pTTkgb+/lrMMOrDkR7qbvRt/613TqxehgK/zA+j4VKw+7XrViYUJ65iM0n6ljSbDbw5BZh9cssRY7vyXW4gTx4m9NiebXiTy8UZ2EJq9X/U+5T9KvcOpTBdKBxYrDHftZoSPb5itty3g4TwdCUA8dh7WunK4KBYdlWx6iLvY/5O0w6V3yDwoYluakp/MG5ioYnwk8kRQ0uYMc1qMriuPE="
+      secure: "sudlB7XaEq3mMQ/jSJPtssQaTL9i6zrHpF4Xa0TKHX69nkSg7/Aq/Z37Qe4o1ABmTImHc/b5ipdGAxC5OCVuRazDdh7P7e24QFPETEsWdmVRVS3/6DGAYIbugA937Zw47LarK3v6OQJfGYcj1scRfRqDwrO4ngoIMawwFSo209COaniCPnGi7gAm/BNwZkS0PwdxQPSTNrZAgR5VKawoZHJZDosQE6CnpjFBnfa/JZDYfj/AIk0U7ygpRWiO5Rcndudc/jr69bz/6EpUcwwAQHg6RnzX2fCoCgyOVlzTPHNb3MUWV8CBe5EK20PSxijzRouY0zH0Mx9TQq9GIJrD75IJ8vYtdIutrfz9EX9sMS5grfnielxZleeQ6mXD6CrseVmL9RJFPXmZZay1uJ0fhg+w2Rc1wK7FaDgGLueKBSWUQmx79K93OsPhC/FqCUCsk6ua6lqtv2v6uBx54KJnU7pTTkgb+/lrMMOrDkR7qbvRt/613TqxehgK/zA+j4VKw+7XrViYUJ65iM0n6ljSbDbw5BZh9cssRY7vyXW4gTx4m9NiebXiTy8UZ2EJq9X/U+5T9KvcOpTBdKBxYrDHftZoSPb5itty3g4TwdCUA8dh7WunK4KBYdlWx6iLvY/5O0w6V3yDwoYluakp/MG5ioYnwk8kRQ0uYMc1qMriuPE="
+env:
+  global:
+    # This is the CODECOV environment token, used by the script that sends the
+    # coverage report to codecov.io
+    secure: "qOBO+4Bd81kH+XYPfCOVxC+hmO3pYRbBSdcW9LpiKcJTDg5/0NNbfviVvAulzdoBFS+sAuh16r6tddeaqMfZsQ1q8lZKV6W9gXmupovUCHUb+KyOjJ0nNoNFkwnmQgNkFVjlrB8oWYpmXLpOTlij0eKIRx+HdAEA8/lyIkIynABUIxK4Viq9am7zoDyb+74YLt2IKYdOy7yKckWHdyf8Vuq65NvyMhcBzC4mVSJUPVwcjWbcIMN5VSSRuRZhGkjpcNOzc5dKBE2s86vJwcWNnmeySgS8RZDszI6KJDo8s5mgn/UwHWiaJ4S71z8EjcYowltzFrR+4oj510McNktDdMxmqmKNnuKi1T5slKBPdsMAK18nV3UJQrVO6w6wUMZyiqd2Z+tzs1C/1QR7ZCVNCX/7i/lYgqpIkEa4wDIBYccXwbxemswjp8fuK18LxXbM22a50TMwAkMSl8g5qWEb5kfn2eVhMfHmFppHhn3r4+pSlS4MvdcD9IEqZ3TyOgk1OO/iJHbkKGkSU1yYfYd6gpIAlV+vTk2tl4dtYhBHDb5HZKM7tyoAye29Eh+U1e1I6bjU6p8H4fcNlx6JahEBYrWJrLodF0CSRrmJD9IZ5hKzr11nWMQiZH+guuwosCmgdGM49xSoXjw8TesPbwGUOFvcEkkeqP2UkBRKLGaFgjc="
