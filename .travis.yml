@@ -44,8 +44,8 @@ before_install:
 
 install:
   - . $HOME/.nvm/nvm.sh
-  - nvm install stable
-  - nvm use stable
+  - nvm install 6.11.1
+  - nvm use 6.11.1
   - npm install
 
 notifications:
