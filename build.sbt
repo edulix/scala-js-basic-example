@@ -50,6 +50,7 @@ lazy val hello = crossProject(JSPlatform, JVMPlatform, NativePlatform)
     ),
 
     npmDependencies in Compile ++= Seq(
+      "source-map-loader" -> "0.1.15",
       "source-map-support" -> "0.4.15",
       "jsdom" -> "11.1.0",
       "webpack" -> "2.7.0"
