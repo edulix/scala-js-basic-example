@@ -9,11 +9,11 @@ a skeleton for projects. But it includes additionally:
 - Unit testing with a wide range of backends
 - Integration with Travis CI to execute the unit tests
 - Integration with coverage for tests
-- A pre-commit hook that makes unit test obligatory to pass locally [TODO, use git for this]
-- a pre-commit hook that checks that code styling conforms to the specification [TODO]
+- A github condition that makes unit test obligatory to pass before merging into master [TODO]
+- github condition that makes obligatory that code styling conforms to the specification [TODO]
 - Symbol exports in Scala.js [TODO]
-- Tests for JVM
-- Tests common for all (ScalaJVM, ScalaNative, ScalaJS)
+- Tests for JVM [TODO]
+- Tests common for all (ScalaJVM, ScalaNative, ScalaJS) [TODO]
 
 ## How to run in the web browser
 
