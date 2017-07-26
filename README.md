@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/nVotesOrg/scala-js-basic-example.svg?branch=master)](https://travis-ci.org/nVotesOrg/scala-js-basic-example)
+[![Build Status](https://travis-ci.org/nVotesOrg/scala-js-basic-example.svg?branch=master)](https://travis-ci.org/nVotesOrg/scala-js-basic-example) [![Gitter](https://img.shields.io/badge/gitter-join%20chat-green.svg)](https://gitter.im/nVotesOrg/scala-js-basic-example)
 
 # Scalajs basic tutorial
 
