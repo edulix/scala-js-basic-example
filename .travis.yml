@@ -38,7 +38,8 @@ before_script:
 
 before_install:
   - wget https://chromedriver.storage.googleapis.com/2.30/chromedriver_linux64.zip -O /tmp/chromedriver.zip
-  - unzip /tmp/chromedriver.zip /tmp/chromedriver
+  - unzip /tmp/chromedriver.zip
+  - ls /tmp/chrome*
   - chmod 777 /tmp/chromedriver
 
 install:
