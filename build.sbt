@@ -1,6 +1,7 @@
 // shadow sbt-scalajs' crossProject and CrossType until Scala.js 1.0.0 is released
 import sbtcrossproject.{crossProject, CrossType}
 
+
 lazy val hello = crossProject(JSPlatform, JVMPlatform, NativePlatform)
   .crossType(CrossType.Full)
   .settings(
@@ -15,6 +16,7 @@ lazy val hello = crossProject(JSPlatform, JVMPlatform, NativePlatform)
   .jsSettings(
     // For now, this is an application with a main method
     scalaJSUseMainModuleInitializer := true,
+    parallelExecution in ThisBuild := false,
     jsEnv in Test := {
         val testBackend = sys.props.getOrElse("testBackend", "jsdom")
         val initFiles = Seq((baseDirectory.value / "target" / "scala-2.11" / "scala-js-tutorial-test-jsdeps.js").getCanonicalPath)

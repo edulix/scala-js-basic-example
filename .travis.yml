@@ -13,6 +13,7 @@ jdk:
   - oraclejdk8
 
 script:
+  - node -v; npm -v
   - sbt -DtestBackend=jsdom "; clean; helloJS/fastOptJS; helloJS/fastOptJS::webpack; helloJS/test"
   - sbt -DtestBackend=phantomjs helloJS/test
   - sbt -Dwebdriver.chrome.driver=/tmp/chromedriver -DtestBackend=selenium-chrome helloJS/test
