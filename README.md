@@ -8,10 +8,12 @@ a skeleton for projects. But it includes additionally:
 - Example shared code between platforms and some platform-specific code
 - Unit testing with a wide range of backends
 - Integration with Travis CI to execute the unit tests
-- Integration with coverage for tests [TODO]. codecoverage like https://codecov.io/gh/pepegar/hammock ? coverage.io?
+- Integration with coverage for tests
 - A pre-commit hook that makes unit test obligatory to pass locally [TODO, use git for this]
 - a pre-commit hook that checks that code styling conforms to the specification [TODO]
 - Symbol exports in Scala.js [TODO]
+- Tests for JVM
+- Tests common for all (ScalaJVM, ScalaNative, ScalaJS)
 
 ## How to run in the web browser
 
@@ -30,6 +32,12 @@ And open in the web browser the `index.html` file.
 ## How to run tests
 
 You can run the tests in many ways.
+
+### With Scala JVM
+
+Execute:
+
+    sbt helloJVM/test
 
 ### With Scala.js and jsdom
 
