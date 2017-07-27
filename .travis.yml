@@ -3,6 +3,18 @@ dist: trusty
 
 addons:
   chrome: stable
+  apt:
+    packages:
+      - clang-3.8
+      - libllvm3.8
+      - libclang-common-3.8-dev
+      - libclang1-3.8
+      - libllvm3.8
+      - llvm-3.8
+      - llvm-3.8-dev
+      - llvm-3.8-runtime
+      - libgc-dev
+      - libunwind-dev
 
 scala:
   - 2.11.11
@@ -48,18 +60,6 @@ before_install:
   - wget https://chromedriver.storage.googleapis.com/2.31/chromedriver_linux64.zip -O /tmp/chromedriver.zip
   - unzip /tmp/chromedriver.zip -d /tmp
   - chmod 777 /tmp/chromedriver
-  - sudo aptitude search llvm
-  - sudo aptitude search clang
-  - sudo aptitude search libgc
-  - sudo aptitude search libunwind
-  - sudo apt-get install -y \
-      clang++-3.7 \
-      llvm-3.7 \
-      llvm-3.7-dev \
-      llvm-3.7-runtime \
-      llvm-3.7-tool \
-      libgc-dev \
-      libunwind7-dev
 
 install:
   # specify node.js version
