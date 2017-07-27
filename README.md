@@ -12,7 +12,6 @@ a skeleton for projects. But it includes additionally:
 - A github condition that makes unit test obligatory to pass before merging into master [TODO]
 - github condition that makes obligatory that code styling conforms to the specification [TODO]
 - Symbol exports in Scala.js [TODO]
-- Tests for Scala Native [TODO]
 
 ## How to run in the web browser
 
@@ -37,6 +36,12 @@ You can run the tests in many ways.
 Execute:
 
     sbt helloJVM/test
+
+### With Scala Native
+
+Execute:
+
+    sbt helloNative/test
 
 ### With Scala.js and jsdom
 

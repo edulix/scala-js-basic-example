@@ -17,8 +17,8 @@ jdk:
   - openjdk8
 
 script:
-  # for now sbt coverage doesn't work with scala-js
-  - sbt "; clean; coverage; helloJVM/test; coverageReport"
+  # for now sbt coverage only works with Scala JVM
+  - sbt "; clean; coverage; helloJVM/test; coverageReport; coverageOff; helloNative/test"
   - sbt -DtestBackend=jsdom "; helloJS/fastOptJS; helloJS/fastOptJS::webpack; helloJS/test"
   - sbt -DtestBackend=phantomjs helloJS/test
   - sbt -Dwebdriver.chrome.driver=/tmp/chromedriver -DtestBackend=selenium-chrome helloJS/test
