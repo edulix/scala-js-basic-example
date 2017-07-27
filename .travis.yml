@@ -14,7 +14,6 @@ addons:
       - llvm-3.8-dev
       - llvm-3.8-runtime
       - libgc-dev
-      - libunwind-dev
 
 scala:
   - 2.11.11
