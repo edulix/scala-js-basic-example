@@ -12,8 +12,7 @@ a skeleton for projects. But it includes additionally:
 - A github condition that makes unit test obligatory to pass before merging into master [TODO]
 - github condition that makes obligatory that code styling conforms to the specification [TODO]
 - Symbol exports in Scala.js [TODO]
-- Tests for JVM [TODO]
-- Tests common for all (ScalaJVM, ScalaNative, ScalaJS) [TODO]
+- Tests for Scala Native [TODO]
 
 ## How to run in the web browser
 

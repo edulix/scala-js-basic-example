@@ -8,8 +8,9 @@ lazy val hello = crossProject(JSPlatform, JVMPlatform, NativePlatform)
     scalaVersion := "2.11.11",
     name := "Scala.js Tutorial",
     libraryDependencies ++= Seq(
-      "com.lihaoyi" %%% "utest" % "0.4.4" % "test"
-    )
+      "com.lihaoyi" %%% "utest" % "0.4.8" % "test"
+    ),
+    testFrameworks += new TestFramework("utest.runner.Framework")
   )
   .jvmSettings()
   .nativeSettings()
@@ -56,9 +57,7 @@ lazy val hello = crossProject(JSPlatform, JVMPlatform, NativePlatform)
       "source-map-support" -> "0.4.15",
       "jsdom" -> "11.1.0",
       "webpack" -> "2.7.0"
-    ),
-
-    testFrameworks += new TestFramework("utest.runner.Framework")
+    )
     /*,
     webpackConfigFile := Some(baseDirectory.value / "webpack.config.js"),
     webpackConfigFile in Test := Some(baseDirectory.value / "webpack.config.js")*/
