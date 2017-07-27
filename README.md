@@ -9,6 +9,7 @@ a skeleton for projects. But it includes additionally:
 - Unit testing with a wide range of backends
 - Integration with Travis CI to execute the unit tests
 - Integration with coverage for tests
+  - Only works with Scala JVM, add Scala JS and maybe Scala Native support [TODO]
 - A github condition that makes unit test obligatory to pass before merging into master [TODO]
 - github condition that makes obligatory that code styling conforms to the specification [TODO]
 - Symbol exports in Scala.js [TODO]
