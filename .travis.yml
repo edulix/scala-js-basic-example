@@ -15,7 +15,7 @@ addons:
       - llvm-3.8-dev
       - llvm-3.8-runtime
       - libgc-dev
-      - libre2-dev
+      - libre-dev
       - libunwind8
       - libunwind8-dev
 
