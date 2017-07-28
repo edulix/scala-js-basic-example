@@ -4,6 +4,8 @@ dist: trusty
 addons:
   chrome: stable
   apt:
+    sources:
+      - debian-sid
     packages:
       # These are all scala-native dependencies
       - clang-3.8
