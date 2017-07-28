@@ -39,7 +39,8 @@ script:
   #
   # Setup custom prefix paths so that re2 library is correctly loaded from the
   # /tmp/usr_re2 prefix
-  - export LD_LIBRARY_PATH=/tmp/usr_re2/lib/ && sbt -DnativeLinkingOptions="-L/tmp/usr_re2/lib/" -DnativeCompileOptions="-I/tmp/usr_re2/include/" "; clean; coverage; helloJVM/test; coverageReport; coverageOff; helloNative/test"
+  - export LD_LIBRARY_PATH=/tmp/usr_re2/lib/ && sbt -DnativeLinkingOptions="-L/tmp/usr_re2/lib/" -DnativeCompileOptions="-I/tmp/usr_re2/include/" "; clean; helloNative/test"
+  - sbt "; coverage; helloJVM/test; coverageReport; coverageOff"
   - sbt -DtestBackend=jsdom "; helloJS/fastOptJS; helloJS/fastOptJS::webpack; helloJS/test"
   - sbt -DtestBackend=phantomjs helloJS/test
   - sbt -Dwebdriver.chrome.driver=/tmp/chromedriver -DtestBackend=selenium-chrome helloJS/test
