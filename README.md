@@ -2,6 +2,8 @@
 
 # Scalajs basic tutorial
 
+[![Join the chat at https://gitter.im/scala-js-basic-example/Lobby](https://badges.gitter.im/scala-js-basic-example/Lobby.svg)](https://gitter.im/scala-js-basic-example/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 This is based on the scala.js basic tutorial modified to be a skeleton to be used as
 a skeleton for projects. But it includes additionally:
 - Cross-compiling for three platforms: ScalaNative, Scala.js and ScalaJVM
