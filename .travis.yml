@@ -7,8 +7,8 @@ addons:
       # These are all scala-native dependencies. To find what othen dependencies
       # are allowed and what are their sources, see
       # https://docs.travis-ci.com/user/installing-dependencies/#Identifying-the-source-for-a-missing-package
-    sources:
-      - debian-sid
+    #sources:
+      #- debian-sid
     packages:
       - clang-3.8
       - libllvm3.8
@@ -19,10 +19,9 @@ addons:
       - llvm-3.8-dev
       - llvm-3.8-runtime
       - libgc-dev
-      - libre2-dev
-      - libunwind8
-      - libunwind8-dev
-      - locales=2.13+git20120306-12
+      #- libre2-dev
+      #- libunwind8
+      #- libunwind8-dev
 
 scala:
   - 2.11.11
