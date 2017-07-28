@@ -19,7 +19,7 @@ addons:
       - llvm-3.8-runtime=1:3.8-2ubuntu3~trusty5
       - libgc-dev=1:7.2d-5ubuntu2.1
       - libre2-dev
-      - libre2-1v5
+      - libre2-3
       - libunwind8
       - libunwind8-dev
 
