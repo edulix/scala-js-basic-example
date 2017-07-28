@@ -22,7 +22,7 @@ addons:
       - libre2-dev
       - libunwind8
       - libunwind8-dev
-      - libc-bin
+      - locales=2.13+git20120306-12
 
 scala:
   - 2.11.11
