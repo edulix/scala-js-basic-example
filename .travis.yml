@@ -73,7 +73,7 @@ before_install:
   # install re2 like scala-native does but in /tmp so that it doesn't require
   # sudo:
   # https://github.com/scala-native/scala-native/blob/master/bin/travis_setup.sh
-  - export CXX=clang++-3.8 && cd /tmp && git clone https://code.googlesource.com/re2 && cd re2 && git checkout 2017-03-01 && make -j4 test && make install prefix=/tmp/usr_re2 && make testinstall prefix=/tmp/usr_re2
+  - export CXX=clang++-3.8 && pushd /tmp && git clone https://code.googlesource.com/re2 && cd re2 && git checkout 2017-03-01 && make -j4 test && make install prefix=/tmp/usr_re2 && make testinstall prefix=/tmp/usr_re2; popd
 
 install:
   # specify node.js version
