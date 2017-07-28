@@ -13,7 +13,10 @@ lazy val hello = crossProject(JSPlatform, JVMPlatform, NativePlatform)
     testFrameworks += new TestFramework("utest.runner.Framework")
   )
   .jvmSettings()
-  .nativeSettings()
+  .nativeSettings(
+    nativeLinkingOptions ++= sys.props.getOrElse("nativeLinkingOptions", "").split(" ").toSeq,
+    nativeCompileOptions ++= sys.props.getOrElse("nativeCompileOptions", "").split(" ").toSeq
+  )
   .jsSettings(
     // For now, this is an application with a main method
     scalaJSUseMainModuleInitializer := true,

@@ -18,10 +18,9 @@ addons:
       - llvm-3.8-dev=1:3.8-2ubuntu3~trusty5
       - llvm-3.8-runtime=1:3.8-2ubuntu3~trusty5
       - libgc-dev=1:7.2d-5ubuntu2.1
-      - libre2-dev
-      - libre2-3
       - libunwind8
       - libunwind8-dev
+      - make
 
 scala:
   - 2.11.11
@@ -36,8 +35,11 @@ jdk:
   - openjdk8
 
 script:
-  # for now sbt coverage only works with Scala JVM
-  - sbt "; clean; coverage; helloJVM/test; coverageReport; coverageOff; helloNative/test"
+  # For now sbt coverage only works with Scala JVM
+  #
+  # Setup custom prefix paths so that re2 library is correctly loaded from the
+  # /tmp/usr_re2 prefix
+  - export LD_LIBRARY_PATH=/tmp/usr_re2/lib/ && sbt -DnativeLinkingOptions="-L/tmp/usr_re2/lib/" -DnativeCompileOptions="-I/tmp/usr_re2/include/" "; clean; coverage; helloJVM/test; coverageReport; coverageOff; helloNative/test"
   - sbt -DtestBackend=jsdom "; helloJS/fastOptJS; helloJS/fastOptJS::webpack; helloJS/test"
   - sbt -DtestBackend=phantomjs helloJS/test
   - sbt -Dwebdriver.chrome.driver=/tmp/chromedriver -DtestBackend=selenium-chrome helloJS/test
@@ -67,6 +69,10 @@ before_install:
   - wget https://chromedriver.storage.googleapis.com/2.31/chromedriver_linux64.zip -O /tmp/chromedriver.zip
   - unzip /tmp/chromedriver.zip -d /tmp
   - chmod 777 /tmp/chromedriver
+  # install re2 like scala-native does but in /tmp so that it doesn't require
+  # sudo:
+  # https://github.com/scala-native/scala-native/blob/master/bin/travis_setup.sh
+  - export CXX=clang++-3.8 && cd /tmp && git clone https://code.googlesource.com/re2 && cd re2 && git checkout 2017-03-01 && make -j4 test && make install prefix=/tmp/usr_re2 && make testinstall prefix=/tmp/usr_re2
 
 install:
   # specify node.js version
