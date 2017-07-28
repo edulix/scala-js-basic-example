@@ -52,6 +52,8 @@ cache:
   directories:
     - $HOME/.ivy2/cache
     - $HOME/.sbt/boot/
+    - /tmp/usr_re2/
+    - /tmp/re2/
 
 before_cache:
   # Cleanup the cached directories to avoid unnecessary cache updates
