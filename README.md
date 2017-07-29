@@ -1,6 +1,6 @@
-[![Build Status](https://travis-ci.org/nVotesOrg/scala-js-basic-example.svg?branch=master)](https://travis-ci.org/nVotesOrg/scala-js-basic-example) [![Gitter](https://img.shields.io/badge/gitter-join%20chat-green.svg)](https://gitter.im/nVotesOrg/scala-js-basic-example) [![codecov](https://codecov.io/gh/nVotesOrg/scala-js-basic-example/branch/master/graph/badge.svg)](https://codecov.io/gh/nVotesOrg/scala-js-basic-example)
+[![Build Status](https://travis-ci.org/nVotesOrg/scala-js-basic-example.svg?branch=master)](https://travis-ci.org/nVotesOrg/scala-js-basic-example) [![Gitter](https://img.shields.io/badge/gitter-join%20chat-green.svg)](https://gitter.im/nVotesOrg/scala-js-basic-example) [![codecov](https://codecov.io/gh/nVotesOrg/scala-js-basic-example/branch/master/graph/badge.svg)](https://codecov.io/gh/nVotesOrg/scala-js-basic-example) [![License](https://img.shields.io/badge/license-Apache%202-blue.svg)](https://raw.githubusercontent.com/47deg/github4s/master/LICENSE)
 
-# Scalajs basic tutorial
+# Introduction
 
 This is based on the scala.js basic tutorial modified to be a skeleton to be used as
 a skeleton for projects. But it includes additionally:
@@ -10,15 +10,16 @@ a skeleton for projects. But it includes additionally:
 - Integration with Travis CI to execute the unit tests
 - Uses Travis CI containers and Travis CI cache for faster builds
 - A gitter chat
-- Integration with coverage for tests
-  - Only works with Scala JVM, add Scala JS and maybe Scala Native support [TODO]
-- A github condition that makes unit test obligatory to pass before merging into master [TODO]
-- github condition that makes obligatory that code styling conforms to the specification]
+- Github is configured to protect master branch requiring a pull request with a
+  valid Travis CI build before merging into master
+- Integration with codecov for JVM unit tests
+- Generates code documentation automatically [TODO]
+- Integration with codecov for Scala JS and maybe Scala Native unit tests [TODO]
 - Symbol exports in Scala.js [TODO]
 
-## Execution
+# Execution
 
-## In the web browser
+# In the web browser
 
 Dependencies:
 - sbt >= 0.13
@@ -32,17 +33,17 @@ Then compile to test in the web browser:
 
 And open in the web browser the `index.html` file.
 
-## Tests
+# Tests
 
 You can run the tests in many ways.
 
-### Run tests with Scala JVM
+## Run tests with Scala JVM
 
 Execute:
 
     sbt helloJVM/test
 
-### Run tests with Scala Native
+## Run tests with Scala Native
 
 Execute:
 
@@ -51,24 +52,23 @@ Execute:
 Note: scala-native seems to require google re2 library. If it's installed in a
 non standard prefix, execute it this way:
 
-    export RE2_PREFIX_PATH=/path/to/prefix
+    export RE2_PREFIX_PATH=/path/to/prefix # `/usr` or `/usr/local` are standard values
     export LD_LIBRARY_PATH=$RE2_PREFIX_PATH/lib/
-    sbt -DnativeLinkingOptions="-L$RE2_PREFIX_PATH/lib/" -DnativeCompileOptions="-I$RE2_PREFIX_PATH/include/" "; clean; helloNative/test" && \
+    sbt -DnativeLinkingOptions="-L$RE2_PREFIX_PATH/lib/" -DnativeCompileOptions="-I$RE2_PREFIX_PATH/include/" "; clean; helloNative/test"
 
-
-### Run tests with Scala.js and jsdom
+## Run tests with Scala.js and jsdom
 
 Execute:
 
     sbt -DtestBackend=jsdom helloJS/test
 
-### Run tests with Scala.js and phantomjs
+## Run tests with Scala.js and phantomjs
 
 Install the `phantomjs` command in your system, then run:
 
     sbt -DtestBackend=phantomjs helloJS/test
 
-### Run tests with Scala.js and Selenium with Google Chrome
+## Run tests with Scala.js and Selenium with Google Chrome
 
 Install `selenium`, `xvfb` and downlod selenium-chromedriver, then run the
 following commands, but changing /path/to/chromedriver to the correct path:
@@ -79,14 +79,15 @@ following commands, but changing /path/to/chromedriver to the correct path:
 
     sbt -Dwebdriver.chrome.driver=/path/to/chromedriver -DtestBackend=selenium-chrome helloJS/test
 
-### Run tests in all environments
+## Run tests in all environments
 
 Install all the dependencies above and then execute:
 
-    ./runtests.sh /path/to/chromedriver
+    ./runtests.sh /path/to/chromedriver /path/to/re2/prefix
 
+NOTE: `/usr` or `/usr/local` are standard values for `/path/to/re2/prefix`
 
-## Continuous Integration with Travis CI
+# Continuous Integration with Travis CI
 
 This project uses Travis CI for continuous integration. Travis CI is configured
 to check all the following items execute successfully:
@@ -94,7 +95,7 @@ to check all the following items execute successfully:
 - Check that copyright notice headers are in place
 - Check that code formatting conforms to specification with scalafmt
 
-## Formatting
+# Formatting
 
 This project uses scalafmt to format its source code. It's mandatory to conform
 to the specified format.
@@ -107,8 +108,7 @@ To format the source code, execute:
 
     sbt "; scalafmt; sbt:scalafmt; test:scalafmt;"
 
-
-### Copyright notice headers
+## Copyright notice headers
 
 
 It's mandatory that all source files have a copyright notice header, which is

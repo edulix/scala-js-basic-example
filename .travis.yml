@@ -38,7 +38,7 @@ script:
   # testing all code files have the correct copyright headers
   - sbt headerCheck | tee headercheck.log; test $(grep "There are files without headers"  headercheck.log | wc -l) = 0 && echo "No files without headers, continuing. For now, ignoring the 'Unable to auto detect project license' exception, it works well even if it's shown"
   # checking formatting
-  - sbt "; scalafmt::test; sbt:scalafmt::test; test:scalafmt::test;"
+  - sbt "; scalafmt::test; sbt:scalafmt::test; test:scalafmt::test"
   - ./runtests.sh /tmp/chromedriver_download/chromedriver /tmp/re2/usr
 
 # <Comment>
