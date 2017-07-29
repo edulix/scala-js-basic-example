@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/nVotesOrg/scala-js-basic-example.svg?branch=master)](https://travis-ci.org/nVotesOrg/scala-js-basic-example) [![Gitter](https://img.shields.io/badge/gitter-join%20chat-green.svg)](https://gitter.im/nVotesOrg/scala-js-basic-example) [![Codecov](https://codecov.io/github/nVotesOrg/scala-js-basic-example.svg/coverage.svg?branch=master)](https://codecov.io/github/nVotesOrg/scala-js-basic-example.svg?branch=master)
+[![Build Status](https://travis-ci.org/nVotesOrg/scala-js-basic-example.svg?branch=master)](https://travis-ci.org/nVotesOrg/scala-js-basic-example) [![Gitter](https://img.shields.io/badge/gitter-join%20chat-green.svg)](https://gitter.im/nVotesOrg/scala-js-basic-example) [![codecov](https://codecov.io/gh/nVotesOrg/scala-js-basic-example/branch/master/graph/badge.svg)](https://codecov.io/gh/nVotesOrg/scala-js-basic-example)
 
 # Scalajs basic tutorial
 
