@@ -38,8 +38,8 @@ script:
   # For now sbt coverage only works with Scala JVM
   #
   # Setup custom prefix paths so that re2 library is correctly loaded from the
-  # /tmp/usr_re2 prefix
-  - export LD_LIBRARY_PATH=/tmp/usr_re2/lib/ && sbt -DnativeLinkingOptions="-L/tmp/usr_re2/lib/" -DnativeCompileOptions="-I/tmp/usr_re2/include/" "; clean; helloNative/test"
+  # /tmp/re2/usr/ prefix
+  - export LD_LIBRARY_PATH=/tmp/re2/usr/lib/ && sbt -DnativeLinkingOptions="-L/tmp/re2/usr/lib/" -DnativeCompileOptions="-I/tmp/re2/usr//include/" "; clean; helloNative/test"
   - sbt "; coverage; helloJVM/test; coverageReport; coverageOff"
   - sbt -DtestBackend=jsdom "; helloJS/fastOptJS; helloJS/fastOptJS::webpack; helloJS/test"
   - sbt -DtestBackend=phantomjs helloJS/test
@@ -52,7 +52,6 @@ cache:
   directories:
     - $HOME/.ivy2/cache
     - $HOME/.sbt/boot/
-    - /tmp/usr_re2/
     - /tmp/re2/
     - /tmp/chromedriver_download/
 
@@ -60,6 +59,7 @@ before_cache:
   # Cleanup the cached directories to avoid unnecessary cache updates
   - find $HOME/.ivy2/cache -name "ivydata-*.properties" -print -delete
   - find $HOME/.sbt        -name "*.lock"               -print -delete
+  - rm -rf /tmp/re2/.git
 # </Comment>
 
 before_script:
@@ -70,11 +70,11 @@ before_script:
 
 before_install:
   # Install chromedriver, used for executing tests with Google Chrome
-  - echo -e "#!/bin/bash\n[ ! -d /tmp/chromedriver_download/ ] && mkdir /tmp/chromedriver_download && wget https://chromedriver.storage.googleapis.com/2.31/chromedriver_linux64.zip -O /tmp/chromedriver_download/chromedriver_linux64.zip && unzip /tmp/chromedriver_download/chromedriver_linux64.zip -d /tmp/chromedriver_download && chmod 777 /tmp/chromedriver_download/chromedriver" > /tmp/chromedriver_install.sh && chmod +x /tmp/chromedriver_install.sh && /tmp/chromedriver_install.sh
+  - test -d /tmp/chromedriver_download/ || (mkdir /tmp/chromedriver_download && wget https://chromedriver.storage.googleapis.com/2.31/chromedriver_linux64.zip -O /tmp/chromedriver_download/chromedriver_linux64.zip && unzip /tmp/chromedriver_download/chromedriver_linux64.zip -d /tmp/chromedriver_download && chmod 777 /tmp/chromedriver_download/chromedriver)
   # install re2 like scala-native does but in /tmp so that it doesn't require
   # sudo:
   # https://github.com/scala-native/scala-native/blob/master/bin/travis_setup.sh
-  - echo -e "#!/bin/bash\npushd /tmp; [ ! -d /tmp/re2 ] && export CXX=clang++-3.8 && git clone https://code.googlesource.com/re2 && cd re2 && git checkout 2017-03-01 && make -j4 test && make install prefix=/tmp/usr_re2 && make testinstall prefix=/tmp/usr_re2; popd" > /tmp/re2_install.sh && chmod +x /tmp/re2_install.sh && /tmp/re2_install.sh
+  - BACK=$(pwd); test -d /tmp/re2 || (export CXX=clang++-3.8 && git clone https://code.googlesource.com/re2 && cd re2 && echo d && git checkout 2017-03-01 && make -j4 test && make install prefix=/tmp/re2/usr/ && make testinstall prefix=/tmp/re2/usr/); cd $BACK
 
 install:
   # specify node.js version
