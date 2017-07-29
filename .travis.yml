@@ -80,7 +80,7 @@ before_install:
   # We do this funny testing to see if the directory exists because if it exists
   # it means that it has been restored from the cache and thus we should not
   # have to do anything
-  - BACK=$(pwd); test -f /tmp/re2/usr/include/re2/re2.h || (rm -rf /tmp/re2; export CXX=clang++-3.8 && cd /tmp/ && git clone https://code.googlesource.com/re2 && cd re2 && echo d && git checkout e2deff36afd0a71adbf71cb11fba71ed2a407e4f && make -j4 test && make install prefix=/tmp/re2/usr/ && make testinstall prefix=/tmp/re2/usr/); cd $BACK
+  - BACK=$(pwd); test -f /tmp/re2/usr/include/re2/re2.h || (rm -rf /tmp/re2; export CXX=clang++-3.8 && cd /tmp/ && git clone https://code.googlesource.com/re2 && cd re2 && git checkout e2deff36afd0a71adbf71cb11fba71ed2a407e4f && make -j4 test && make install prefix=/tmp/re2/usr/ && make testinstall prefix=/tmp/re2/usr/); cd $BACK
 
 install:
   # specify node.js version
