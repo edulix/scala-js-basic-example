@@ -43,7 +43,7 @@ script:
   - sbt "; coverage; helloJVM/test; coverageReport; coverageOff"
   - sbt -DtestBackend=jsdom "; helloJS/fastOptJS; helloJS/fastOptJS::webpack; helloJS/test"
   - sbt -DtestBackend=phantomjs helloJS/test
-  - sbt -Dwebdriver.chrome.driver=/tmp/chromedriver_download/chromedriver -DtestBackend=selenium-chrome helloJS/test
+  - ls /tmp/chromedriver_download && sha256sum /tmp/chromedriver_download/chromedriver && sbt -Dwebdriver.chrome.driver=/tmp/chromedriver_download/chromedriver -DtestBackend=selenium-chrome helloJS/test
 
 # <Comment>
 # Tricks to avoid unnecessary cache updates, from
@@ -73,7 +73,7 @@ before_install:
   # this funny testing to see if the directory exists because if it exists it
   # means that it has been restored from the cache and thus we should not have
   # to do anything
-  - test -d /tmp/chromedriver_download/ || (mkdir /tmp/chromedriver_download && wget https://chromedriver.storage.googleapis.com/2.31/chromedriver_linux64.zip -O /tmp/chromedriver_download/chromedriver_linux64.zip && test $(sha256sum /tmp/chromedriver_download/chromedriver_linux64.zip | cut -d' ' -f1) = 3e372ef676beb3a03aba72089ec0624bb9d3b52597635f907d4c23390fb485a0 && unzip /tmp/chromedriver_download/chromedriver_linux64.zip -d /tmp/chromedriver_download && chmod 777 /tmp/chromedriver_download/chromedriver)
+  - ls -lah /tmp/chromedriver_download; test -d /tmp/chromedriver_download/ || (mkdir /tmp/chromedriver_download && wget https://chromedriver.storage.googleapis.com/2.31/chromedriver_linux64.zip -O /tmp/chromedriver_download/chromedriver_linux64.zip && test $(sha256sum /tmp/chromedriver_download/chromedriver_linux64.zip | cut -d' ' -f1) = 3e372ef676beb3a03aba72089ec0624bb9d3b52597635f907d4c23390fb485a0 && unzip /tmp/chromedriver_download/chromedriver_linux64.zip -d /tmp/chromedriver_download && chmod 777 /tmp/chromedriver_download/chromedriver)
   # install re2 like scala-native does but in /tmp so that it doesn't require
   # sudo:
   # https://github.com/scala-native/scala-native/blob/master/bin/travis_setup.sh
