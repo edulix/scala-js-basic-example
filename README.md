@@ -10,10 +10,11 @@ a skeleton for projects. But it includes additionally:
 - Integration with Travis CI to execute the unit tests
 - Uses Travis CI containers and Travis CI cache for faster builds
 - A gitter chat
-- Integration with coverage for tests
-  - Only works with Scala JVM, add Scala JS and maybe Scala Native support [TODO]
-- A github condition that makes unit test obligatory to pass before merging into master [TODO]
-- github condition that makes obligatory that code styling conforms to the specification]
+- Github is configured to protect master branch requiring a pull request with a
+  valid Travis CI build before merging into master
+- Integration with codecov for JVM unit tests
+- Generates code documentation automatically [TODO]
+- Integration with codecov for Scala JS and maybe Scala Native unit tests [TODO]
 - Symbol exports in Scala.js [TODO]
 
 # Execution
