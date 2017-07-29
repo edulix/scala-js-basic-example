@@ -8,6 +8,7 @@ a skeleton for projects. But it includes additionally:
 - Example shared code between platforms and some platform-specific code
 - Unit testing with a wide range of backends
 - Integration with Travis CI to execute the unit tests
+- Uses Travis CI containers and Travis CI cache for faster builds
 - A gitter chat
 - Integration with coverage for tests
   - Only works with Scala JVM, add Scala JS and maybe Scala Native support [TODO]
