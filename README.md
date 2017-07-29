@@ -124,3 +124,10 @@ You can ignore it, it did actually auto detect the project license.
 To add to all files the appropiate copyright notice header, execute:
 
     sbt headerCreate
+
+# Checking dependencies updates
+
+It's good to know if there's any library dependency that can be updated. Thanks
+to our use of `sbt-updates`, you can do that executing:
+
+    sbt dependencyUpdates

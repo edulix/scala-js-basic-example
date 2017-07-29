@@ -18,7 +18,7 @@ sbt -DnativeLinkingOptions="-L$RE2_PREFIX_PATH/lib/" -DnativeCompileOptions="-I$
 # Execute JVM tests, creating also a coverage report
 sbt "; coverage; helloJVM/test; coverageReport; coverageOff" && \
 # Execute helloJS tests with jsdom
-sbt -DtestBackend=jsdom "; helloJS/fastOptJS; helloJS/fastOptJS::webpack; helloJS/test" && \
+sbt -DtestBackend=jsdom "; helloJS/fastOptJS; helloJS/fastOptJS::webpack; coverage; helloJS/test" && \
 # Execute helloJS tests with phantomjs
 sbt -DtestBackend=phantomjs helloJS/test && \
 # Execute helloJS tests with selenium-chrome
