@@ -1,6 +1,6 @@
 
 addSbtPlugin("org.scala-js"      % "sbt-scalajs"                % "0.6.19")
-addSbtPlugin("org.scoverage"     % "sbt-scoverage"              % "1.3.5")
+addSbtPlugin("org.scoverage"     % "sbt-scoverage"              % "1.5.0")
 addSbtPlugin("org.scala-native"  % "sbt-crossproject"           % "0.2.0")
 addSbtPlugin("org.scala-native"  % "sbt-scalajs-crossproject"   % "0.2.0")
 addSbtPlugin("ch.epfl.scala"     % "sbt-scalajs-bundler"        % "0.7.0")
