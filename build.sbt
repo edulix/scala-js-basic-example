@@ -10,7 +10,16 @@ lazy val hello = crossProject(JSPlatform, JVMPlatform, NativePlatform)
     libraryDependencies ++= Seq(
       "com.lihaoyi" %%% "utest" % "0.4.8" % "test"
     ),
-    testFrameworks += new TestFramework("utest.runner.Framework")
+    testFrameworks += new TestFramework("utest.runner.Framework"),
+    scalafmtOnCompile := true,
+    scalafmtTestOnCompile := true,
+    scalafmtFailTest := true,
+    scalafmtConfig := file("scalafmt.conf"),
+
+    organizationName := "nVotes",
+    startYear := Some(2017),
+    licenses += ("Apache-2.0", new URL("https://www.apache.org/licenses/LICENSE-2.0.txt")),
+    headerLicense := Some(HeaderLicense.ALv2("2017", "nVotes <legal AT nvotes DOT com> https://nvotes.com - Agora Voting SL"))
   )
   .jvmSettings()
   .nativeSettings(
