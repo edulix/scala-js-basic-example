@@ -16,11 +16,13 @@ a skeleton for projects. But it includes additionally:
 - github condition that makes obligatory that code styling conforms to the specification]
 - Symbol exports in Scala.js [TODO]
 
-## How to run in the web browser
+## Execution
+
+## In the web browser
 
 Dependencies:
 - sbt >= 0.13
-- If using Scala Native, install node
+- If using Scala Native, install node and https://code.googlesource.com/re2
 - If using Scala JVM, install Scala JVM dependencies (mainly Java 8)
 - If using Scala JS, Node.js >= 6
 
@@ -30,35 +32,43 @@ Then compile to test in the web browser:
 
 And open in the web browser the `index.html` file.
 
-## How to run tests
+## Tests
 
 You can run the tests in many ways.
 
-### With Scala JVM
+### Run tests with Scala JVM
 
 Execute:
 
     sbt helloJVM/test
 
-### With Scala Native
+### Run tests with Scala Native
 
 Execute:
 
     sbt helloNative/test
 
-### With Scala.js and jsdom
+Note: scala-native seems to require google re2 library. If it's installed in a
+non standard prefix, execute it this way:
+
+    export RE2_PREFIX_PATH=/path/to/prefix
+    export LD_LIBRARY_PATH=$RE2_PREFIX_PATH/lib/
+    sbt -DnativeLinkingOptions="-L$RE2_PREFIX_PATH/lib/" -DnativeCompileOptions="-I$RE2_PREFIX_PATH/include/" "; clean; helloNative/test" && \
+
+
+### Run tests with Scala.js and jsdom
 
 Execute:
 
     sbt -DtestBackend=jsdom helloJS/test
 
-### With Scala.js and phantomjs
+### Run tests with Scala.js and phantomjs
 
 Install the `phantomjs` command in your system, then run:
 
     sbt -DtestBackend=phantomjs helloJS/test
 
-### With Scala.js and Selenium with Google Chrome
+### Run tests with Scala.js and Selenium with Google Chrome
 
 Install `selenium`, `xvfb` and downlod selenium-chromedriver, then run the
 following commands, but changing /path/to/chromedriver to the correct path:
@@ -69,8 +79,48 @@ following commands, but changing /path/to/chromedriver to the correct path:
 
     sbt -Dwebdriver.chrome.driver=/path/to/chromedriver -DtestBackend=selenium-chrome helloJS/test
 
-## Execute tests in all environments
+### Run tests in all environments
 
 Install all the dependencies above and then execute:
 
     ./runtests.sh /path/to/chromedriver
+
+
+## Continuous Integration with Travis CI
+
+This project uses Travis CI for continuous integration. Travis CI is configured
+to check all the following items execute successfully:
+- Execute unit tests in all available environments
+- Check that copyright notice headers are in place
+- Check that code formatting conforms to specification with scalafmt
+
+## Formatting
+
+This project uses scalafmt to format its source code. It's mandatory to conform
+to the specified format.
+
+To check the correct formatting of the source code, execute:
+
+    sbt sbt "; scalafmt::test; sbt:scalafmt::test; test:scalafmt::test;"
+
+To format the source code, execute:
+
+    sbt "; scalafmt; sbt:scalafmt; test:scalafmt;"
+
+
+### Copyright notice headers
+
+
+It's mandatory that all source files have a copyright notice header, which is
+checked using the sbt-header plugin.
+
+To check all files have the appropiate copyright notice header, execute:
+
+    sbt headerCheck
+
+NOTE: It will show an exception saying "Unable to auto detect project license".
+You can ignore it, it did actually auto detect the project license.
+
+To add to all files the appropiate copyright notice header, execute:
+
+    sbt headerCreate
