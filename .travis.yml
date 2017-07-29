@@ -38,6 +38,8 @@ script:
   # testing all code files have the correct copyright headers
   - sbt headerCheck | tee headercheck.log; test $(grep "There are files without headers"  headercheck.log | wc -l) = 0 && echo "No files without headers, continuing. For now, ignoring the 'Unable to auto detect project license' exception, it works well even if it's shown"
   - export LD_LIBRARY_PATH=/tmp/re2/usr/lib/ && sbt -DnativeLinkingOptions="-L/tmp/re2/usr/lib/" -DnativeCompileOptions="-I/tmp/re2/usr/include/" "; clean; helloNative/test"
+  # checking formatting
+  - sbt "; scalafmt::test; sbt:scalafmt::test; test:scalafmt::test;"
   # For now sbt coverage only works in this project only with Scala JVM
   #
   # Setup custom prefix paths so that re2 library is correctly loaded from the

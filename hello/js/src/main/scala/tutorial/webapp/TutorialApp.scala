@@ -28,11 +28,9 @@ object TutorialApp {
   }
 
   @JSExportTopLevel("addClickedMessage")
-  def addClickedMessage(): Unit = {
+  def addClickedMessage(): Unit =
     jQuery("body").append("You clicked the button!")
-  }
 
-  def main(args: Array[String]): Unit = {
+  def main(args: Array[String]): Unit =
     jQuery(() => setupUI())
-  }
 }

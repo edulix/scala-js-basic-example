@@ -13,7 +13,7 @@ a skeleton for projects. But it includes additionally:
 - Integration with coverage for tests
   - Only works with Scala JVM, add Scala JS and maybe Scala Native support [TODO]
 - A github condition that makes unit test obligatory to pass before merging into master [TODO]
-- github condition that makes obligatory that code styling conforms to the specification [TODO]
+- github condition that makes obligatory that code styling conforms to the specification]
 - Symbol exports in Scala.js [TODO]
 
 ## How to run in the web browser
