@@ -52,6 +52,9 @@ cache:
   directories:
     - $HOME/.ivy2/cache/
     - $HOME/.sbt/boot/
+    - $HOME/.sbt/0.13/dependency
+    - $HOME/.sbt/launchers
+    - $HOME/.nvm
     - /tmp/re2/
     - /tmp/chromedriver_download/
 
