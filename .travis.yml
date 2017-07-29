@@ -50,7 +50,7 @@ script:
 # http://www.scala-sbt.org/0.13/docs/Travis-CI-with-sbt.html
 cache:
   directories:
-    - $HOME/.ivy2/cache
+    - $HOME/.ivy2/cache/
     - $HOME/.sbt/boot/
     - /tmp/re2/
     - /tmp/chromedriver_download/
