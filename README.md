@@ -23,7 +23,7 @@ a skeleton for projects. But it includes additionally:
 
 Dependencies:
 - sbt >= 0.13
-- If using Scala Native, install node and https://code.googlesource.com/re2
+- If using Scala Native, install LLVM/Clang 3.7 or newer, libunwind 0.99 or newer, Re2 2017-01-01 (see http://www.scala-native.org/en/latest/user/setup.html for details)
 - If using Scala JVM, install Scala JVM dependencies (mainly Java 8)
 - If using Scala JS, Node.js >= 6
 
@@ -124,3 +124,10 @@ You can ignore it, it did actually auto detect the project license.
 To add to all files the appropiate copyright notice header, execute:
 
     sbt headerCreate
+
+# Checking dependencies updates
+
+It's good to know if there's any library dependency that can be updated. Thanks
+to our use of `sbt-updates`, you can do that executing:
+
+    sbt dependencyUpdates
