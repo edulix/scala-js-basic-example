@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/nVotesOrg/scala-js-basic-example.svg?branch=master)](https://travis-ci.org/nVotesOrg/scala-js-basic-example) [![Gitter](https://img.shields.io/badge/gitter-join%20chat-green.svg)](https://gitter.im/nVotesOrg/scala-js-basic-example) [![codecov](https://codecov.io/gh/nVotesOrg/scala-js-basic-example/branch/master/graph/badge.svg)](https://codecov.io/gh/nVotesOrg/scala-js-basic-example) [![License](https://img.shields.io/badge/license-Apache%202-blue.svg)](https://raw.githubusercontent.com/47deg/github4s/master/LICENSE)
+[![Build Status](https://travis-ci.org/nVotesOrg/scalaSkeleton.svg?branch=master)](https://travis-ci.org/nVotesOrg/scalaSkeleton) [![Gitter](https://img.shields.io/badge/gitter-join%20chat-green.svg)](https://gitter.im/nVotesOrg/scalaSkeleton) [![codecov](https://codecov.io/gh/nVotesOrg/scalaSkeleton/branch/master/graph/badge.svg)](https://codecov.io/gh/nVotesOrg/scalaSkeleton) [![License](https://img.shields.io/badge/license-Apache%202-blue.svg)](https://raw.githubusercontent.com/47deg/github4s/master/LICENSE)
 
 # Introduction
 
