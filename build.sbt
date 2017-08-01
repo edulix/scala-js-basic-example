@@ -70,8 +70,8 @@ lazy val hello = crossProject(JSPlatform, JVMPlatform, NativePlatform)
       "org.webjars" % "jquery" % "2.1.4" / "2.1.4/jquery.js"
     ),
     libraryDependencies ++= Seq(
-      "org.scala-js" %%% "scalajs-dom" % "0.9.1",
-      "be.doeraene" %%% "scalajs-jquery" % "0.9.1"
+      "org.scala-js" %%% "scalajs-dom" % "0.9.3",
+      "be.doeraene" %%% "scalajs-jquery" % "0.9.2"
     ),
     npmDependencies in Compile ++= Seq(
       "source-map-loader" -> "0.2.1",
